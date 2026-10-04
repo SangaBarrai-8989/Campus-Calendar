@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Campus Calendar - An advanced calendar for classes, meetings, events, tasks and campus activities."
+    >
+
+    <title>Campus Calendar</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         CAMPUS CALENDAR APP
+         ===================================================== -->
+
+    <div id="app" class="calendar-app">
+
+
+        <!-- =================================================
+             HEADER
+             ================================================= -->
+
+        <header class="top-header">
+
+
+            <!-- Logo -->
+            <div class="brand">
+
+                <div class="brand-icon">
+                    📅
+                </div>
+
+                <div class="brand-text">
+
+                    <h1>
+                        Campus Calendar
+                    </h1>
+
+                    <p>
+                        Organize • Connect • Achieve
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Global Search -->
+            <div class="global-search">
+
+                <span class="search-icon">
+                    🔍
+                </span>
+
+                <input
+                    type="search"
+                    id="globalSearch"
+                    placeholder="Search events, classes, meetings..."
+                    autocomplete="off"
+                >
+
+                <span class="search-shortcut">
+                    Ctrl K
+                </span>
+
+            </div>
+
+
+            <!-- Header Controls -->
+            <div class="header-controls">
+
+
+                <button
+                    type="button"
+                    class="icon-button"
+                    id="helpButton"
+                    aria-label="Help">
+
+                    ?
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="icon-button"
+                    id="settingsButton"
+                    aria-label="Settings">
+
+                    ⚙
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="icon-button notification-button"
+                    id="notificationButton"
+                    aria-label="Notifications">
+
+                    🔔
+
+                    <span
+                        id="notificationCount"
+                        class="notification-count">
+
+                        3
+
+                    </span>
+
+                </button>
+
+
+                <!-- User Profile -->
+                <button
+                    type="button"
+                    class="user-profile"
+                    id="profileButton">
+
+                    <span class="user-avatar">
+                        👤
+                    </span>
+
+                    <span class="user-info">
+
+                        <strong>
+                            Student
+                        </strong>
+
+                        <small>
+                            Campus User
+                        </small>
+
+                    </span>
+
+                    <span class="profile-arrow">
+                        ▾
+                    </span>
+
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             APPLICATION BODY
+             ================================================= -->
+
+        <div class="application-body">
+
+
+            <!-- =================================================
+                 LEFT SIDEBAR
+                 ================================================= -->
+
+            <aside class="left-sidebar">
+
+
+                <!-- Create Event -->
+                <button
+                    type="button"
+                    id="createEventButton"
+                    class="create-event-button">
+
+                    <span class="create-icon">
+                        ＋
+                    </span>
+
+                    <span>
+                        Create Event
+                    </span>
+
+                </button>
+
+
+
+                <!-- Main Navigation -->
+                <nav
+                    class="main-navigation"
+                    aria-label="Main navigation">
+
+
+                    <a
+                        href="#calendar"
+                        class="navigation-item active"
+                        data-page="calendar">
+
+                        <span class="navigation-icon">
+                            📅
+                        </span>
+
+                        <span>
+                            Calendar
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="#my-events"
+                        class="navigation-item"
+                        data-page="my-events">
+
+                        <span class="navigation-icon">
+                            ⭐
+                        </span>
+
+                        <span>
+                            My Events
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="#tasks"
+                        class="navigation-item"
+                        data-page="tasks">
+
+                        <span class="navigation-icon">
+                            ✓
+                        </span>
+
+                        <span>
+                            My Tasks
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="#reminders"
+                        class="navigation-item"
+                        data-page="reminders">
+
+                        <span class="navigation-icon">
+                            🔔
+                        </span>
+
+                        <span>
+                            Reminders
+                        </span>
+
+                    </a>
+
+
+                    <a
+                        href="#shared"
+                        class="navigation-item"
+                        data-page="shared">
+
+                        <span class="navigation-icon">
+                            👥
+                        </span>
+
+                        <span>
+                            Shared Calendars
+                        </span>
+
+                    </a>
+
+                </nav>
+
+
+
+                <!-- =================================================
+                     CALENDAR CATEGORIES
+                     ================================================= -->
+
+                <section class="sidebar-section">
+
+
+                    <div class="sidebar-section-header">
+
+                        <h3>
+                            My Calendars
+                        </h3>
+
+                        <button
+                            type="button"
+                            id="addCalendarButton"
+                            class="small-add-button"
+                            aria-label="Add calendar">
+
+                            ＋
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- Academic -->
+                    <label class="calendar-category">
+
+                        <input
+                            type="checkbox"
+                            class="category-filter"
+                            value="academic"
+                            checked
+                        >
+
+                        <span class="category-dot academic-color"></span>
+
+                        <span>
+                            Academic
+                        </span>
+
+                    </label>
+
+
+                    <!-- Classes -->
+                    <label class="calendar-category">
+
+                        <input
+                            type="checkbox"
+                            class="category-filter"
+                            value="class"
+                            checked
+                        >
+
+                        <span class="category-dot class-color"></span>
+
+                        <span>
+                            Classes
+                        </span>
+
+                    </label>
+
+
+                    <!-- Meetings -->
+                    <label class="calendar-category">
+
+                        <input
+                            type="checkbox"
+                            class="category-filter"
+                            value="meeting"
+                            checked
+                        >
+
+                        <span class="category-dot meeting-color"></span>
+
+                        <span>
+                            Meetings
+                        </span>
+
+                    </label>
+
+
+                    <!-- Exams -->
+                    <label class="calendar-category">
+
+                        <input
+                            type="checkbox"
+                            class="category-filter"
+                            value="exam"
+                            checked
+                        >
+
+                        <span class="category-dot exam-color"></span>
+
+                        <span>
+                            Exams
+                        </span>
+
+                    </label>
+
+
+                    <!-- Assignment -->
+                    <label class="calendar-category">
+
+                        <input
+                            type="checkbox"
+                            class="category-filter"
+                            value="assignment"
+                            checked
+                        >
+
+                        <span class="category-dot assignment-color"></span>
+
+                        <span>
+                            Assignments
+                        </span>
+
+                    </label>
+
+
+                    <!-- Workshop -->
+                    <label class="calendar-category">
+
+                        <input
+                            type="checkbox"
+                            class="category-filter"
+                            value="workshop"
+                            checked
+                        >
+
+                        <span class="category-dot workshop-color"></span>
+
+                        <span>
+                            Workshops
+                        </span>
+
+                    </label>
+
+
+                    <!-- Birthday -->
+                    <label class="calendar-category">
+
+                        <input
+                            type="checkbox"
+                            class="category-filter"
+                            value="birthday"
+                            checked
+                        >
+
+                        <span class="category-dot birthday-color"></span>
+
+                        <span>
+                            Birthdays
+                        </span>
+
+                    </label>
+
+
+                    <!-- Anniversary -->
+                    <label class="calendar-category">
+
+                        <input
+                            type="checkbox"
+                            class="category-filter"
+                            value="anniversary"
+                            checked
+                        >
+
+                        <span class="category-dot anniversary-color"></span>
+
+                        <span>
+                            Anniversaries
+                        </span>
+
+                    </label>
+
+
+                    <!-- Personal -->
+                    <label class="calendar-category">
+
+                        <input
+                            type="checkbox"
+                            class="category-filter"
+                            value="personal"
+                            checked
+                        >
+
+                        <span class="category-dot personal-color"></span>
+
+                        <span>
+                            Personal
+                        </span>
+
+                    </label>
+
+
+                    <!-- Holiday -->
+                    <label class="calendar-category">
+
+                        <input
+                            type="checkbox"
+                            class="category-filter"
+                            value="holiday"
+                            checked
+                        >
+
+                        <span class="category-dot holiday-color"></span>
+
+                        <span>
+                            Holidays
+                        </span>
+
+                    </label>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     QUICK ACCESS
+                     ================================================= -->
+
+                <section class="sidebar-section quick-access">
+
+
+                    <div class="sidebar-section-header">
+
+                        <h3>
+                            Quick Access
+                        </h3>
+
+                    </div>
+
+
+                    <a href="#courses" class="quick-access-item">
+
+                        <span>
+                            📚
+                        </span>
+
+                        <span>
+                            Course Schedule
+                        </span>
+
+                    </a>
+
+
+                    <a href="#students" class="quick-access-item">
+
+                        <span>
+                            👥
+                        </span>
+
+                        <span>
+                            Student List
+                        </span>
+
+                    </a>
+
+
+                    <a href="#campus-map" class="quick-access-item">
+
+                        <span>
+                            📍
+                        </span>
+
+                        <span>
+                            Campus Map
+                        </span>
+
+                    </a>
+
+
+                    <a href="#important-dates" class="quick-access-item">
+
+                        <span>
+                            📌
+                        </span>
+
+                        <span>
+                            Important Dates
+                        </span>
+
+                    </a>
+
+
+                    <a href="#holidays" class="quick-access-item">
+
+                        <span>
+                            🎉
+                        </span>
+
+                        <span>
+                            Campus Holidays
+                        </span>
+
+                    </a>
+
+                </section>
+
+
+            </aside>
+
+
+
+            <!-- =================================================
+                 MAIN CALENDAR
+                 ================================================= -->
+
+            <main class="calendar-main">
+
+
+                <!-- Calendar Toolbar -->
+                <div class="calendar-toolbar">
+
+
+                    <!-- Navigation -->
+                    <div class="calendar-navigation">
+
+
+                        <button
+                            type="button"
+                            id="todayButton"
+                            class="today-button">
+
+                            Today
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="previousButton"
+                            class="calendar-nav-button"
+                            aria-label="Previous">
+
+                            ‹
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            id="nextButton"
+                            class="calendar-nav-button"
+                            aria-label="Next">
+
+                            ›
+
+                        </button>
+
+                    </div>
+
+
+                    <!-- Dynamic Date -->
+                    <div class="calendar-title-area">
+
+                        <h2 id="calendarTitle">
+                            Calendar
+                        </h2>
+
+                        <p id="calendarSubtitle">
+                            Your campus, your schedule
+                        </p>
+
+                    </div>
+
+
+                    <!-- View Selector -->
+                    <div class="calendar-view-selector">
+
+
+                        <button
+                            type="button"
+                            class="view-button active"
+                            data-view="month">
+
+                            Month
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="view-button"
+                            data-view="week">
+
+                            Week
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="view-button"
+                            data-view="day">
+
+                            Day
+
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="view-button"
+                            data-view="agenda">
+
+                            Agenda
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     YEAR / DATE JUMP CONTROLS
+                     ================================================= -->
+
+                <div class="date-jump-bar">
+
+
+                    <button
+                        type="button"
+                        id="yearSelectorButton"
+                        class="date-selector">
+
+                        <span>
+                            Year
+                        </span>
+
+                        <strong id="selectedYear">
+                            —
+                        </strong>
+
+                        <span>
+                            ▾
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="monthSelectorButton"
+                        class="date-selector">
+
+                        <span>
+                            Month
+                        </span>
+
+                        <strong id="selectedMonth">
+                            —
+                        </strong>
+
+                        <span>
+                            ▾
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        id="datePickerButton"
+                        class="date-picker-button">
+
+                        📆
+
+                        <span>
+                            Go to date
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- =================================================
+                     DYNAMIC CALENDAR CONTAINER
+                     ================================================= -->
+
+                <section
+                    id="calendarView"
+                    class="calendar-view"
+                    aria-label="Calendar">
+
+                    <!--
+                        JavaScript will generate:
+
+                        Month View
+                        Week View
+                        Day View
+                        Agenda View
+
+                        for ANY year and ANY date.
+                    -->
+
+                </section>
+
+
+
+                <!-- =================================================
+                     EMPTY STATE
+                     ================================================= -->
+
+                <div
+                    id="calendarEmptyState"
+                    class="calendar-empty-state hidden">
+
+                    <div class="empty-icon">
+                        📅
+                    </div>
+
+                    <h3>
+                        No events found
+                    </h3>
+
+                    <p>
+                        Create an event or change your filters.
+                    </p>
+
+                    <button
+                        type="button"
+                        id="emptyStateCreateButton">
+
+                        Create Event
+
+                    </button>
+
+                </div>
+
+            </main>
+
+
+
+            <!-- =================================================
+                 RIGHT SIDEBAR
+                 ================================================= -->
+
+            <aside class="right-sidebar">
+
+
+                <!-- =================================================
+                     MINI CALENDAR
+                     ================================================= -->
+
+                <section class="right-card mini-calendar-card">
+
+
+                    <div class="mini-calendar-header">
+
+                        <button
+                            type="button"
+                            id="miniPreviousButton">
+
+                            ‹
+
+                        </button>
+
+
+                        <h3 id="miniCalendarTitle">
+                            Calendar
+                        </h3>
+
+
+                        <button
+                            type="button"
+                            id="miniNextButton">
+
+                            ›
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="miniCalendar"
+                        class="mini-calendar">
+
+                        <!-- Generated by JavaScript -->
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     UPCOMING EVENTS
+                     ================================================= -->
+
+                <section class="right-card">
+
+
+                    <div class="right-card-header">
+
+                        <div>
+
+                            <h3>
+                                Upcoming Events
+                            </h3>
+
+                            <p>
+                                What's coming next
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="seeAllEvents">
+
+                            See all
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="upcomingEvents"
+                        class="upcoming-events">
+
+                        <!-- Generated dynamically -->
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     TODAY'S SCHEDULE
+                     ================================================= -->
+
+                <section class="right-card">
+
+
+                    <div class="right-card-header">
+
+                        <div>
+
+                            <h3>
+                                Today's Schedule
+                            </h3>
+
+                            <p id="todayScheduleDate">
+                                —
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="todaySchedule"
+                        class="today-schedule">
+
+                        <!-- Generated dynamically -->
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     TASKS
+                     ================================================= -->
+
+                <section class="right-card">
+
+
+                    <div class="right-card-header">
+
+                        <div>
+
+                            <h3>
+                                My Tasks
+                            </h3>
+
+                            <p>
+                                Stay on track
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            id="addTaskButton">
+
+                            ＋
+
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="taskList"
+                        class="task-list">
+
+                        <!-- Tasks generated dynamically -->
+
+                    </div>
+
+                </section>
+
+            </aside>
+
+        </div>
+
+
+
+        <!-- =================================================
+             CREATE / EDIT EVENT MODAL
+             ================================================= -->
+
+        <div
+            id="eventModal"
+            class="modal hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="eventModalTitle">
+
+
+            <div class="modal-content">
+
+
+                <div class="modal-header">
+
+                    <div>
+
+                        <span class="modal-label">
+                            CAMPUS EVENT
+                        </span>
+
+                        <h2 id="eventModalTitle">
+                            Create Event
+                        </h2>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        id="closeEventModal"
+                        class="close-modal-button"
+                        aria-label="Close">
+
+                        ×
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- Event Form -->
+                <form id="eventForm">
+
+
+                    <!-- Event Title -->
+                    <div class="form-group">
+
+                        <label for="eventTitle">
+                            Event title
+                        </label>
+
+                        <input
+                            type="text"
+                            id="eventTitle"
+                            name="eventTitle"
+                            placeholder="e.g. Computer Science Class"
+                            required>
+
+                    </div>
+
+
+
+                    <!-- Event Type -->
+                    <div class="form-group">
+
+                        <label for="eventType">
+                            Event type
+                        </label>
+
+                        <select
+                            id="eventType"
+                            name="eventType"
+                            required>
+
+
+                            <option value="class">
+                                📚 Class
+                            </option>
+
+
+                            <option value="meeting">
+                                👥 Meeting
+                            </option>
+
+
+                            <option value="academic">
+                                🎓 Academic
+                            </option>
+
+
+                            <option value="exam">
+                                📝 Exam
+                            </option>
+
+
+                            <option value="assignment">
+                                📌 Assignment
+                            </option>
+
+
+                            <option value="workshop">
+                                💡 Workshop
+                            </option>
+
+
+                            <option value="birthday">
+                                🎂 Birthday
+                            </option>
+
+
+                            <option value="anniversary">
+                                💐 Anniversary
+                            </option>
+
+
+                            <option value="holiday">
+                                🎉 Holiday
+                            </option>
+
+
+                            <option value="personal">
+                                ⭐ Personal
+                            </option>
+
+
+                            <option value="other">
+                                ✨ Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Date -->
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="eventStartDate">
+                                Start date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="eventStartDate"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="eventEndDate">
+                                End date
+                            </label>
+
+                            <input
+                                type="date"
+                                id="eventEndDate"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Time -->
+                    <div class="form-row">
+
+                        <div class="form-group">
+
+                            <label for="eventStartTime">
+                                Start time
+                            </label>
+
+                            <input
+                                type="time"
+                                id="eventStartTime">
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="eventEndTime">
+                                End time
+                            </label>
+
+                            <input
+                                type="time"
+                                id="eventEndTime">
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Recurring Event -->
+                    <div class="form-group">
+
+                        <label for="eventRepeat">
+                            Repeat
+                        </label>
+
+                        <select id="eventRepeat">
+
+                            <option value="none">
+                                Does not repeat
+                            </option>
+
+                            <option value="daily">
+                                Every day
+                            </option>
+
+                            <option value="weekly">
+                                Every week
+                            </option>
+
+                            <option value="monthly">
+                                Every month
+                            </option>
+
+                            <option value="yearly">
+                                Every year
+                            </option>
+
+                            <option value="custom">
+                                Custom
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Location -->
+                    <div class="form-group">
+
+                        <label for="eventLocation">
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="eventLocation"
+                            placeholder="Room, building, online meeting...">
+
+                    </div>
+
+
+
+                    <!-- Organizer -->
+                    <div class="form-group">
+
+                        <label for="eventOrganizer">
+                            Organizer
+                        </label>
+
+                        <input
+                            type="text"
+                            id="eventOrganizer"
+                            placeholder="Teacher, club, student, department...">
+
+                    </div>
+
+
+
+                    <!-- Description -->
+                    <div class="form-group">
+
+                        <label for="eventDescription">
+                            Description
+                        </label>
+
+                        <textarea
+                            id="eventDescription"
+                            rows="4"
+                            placeholder="Add event details..."></textarea>
+
+                    </div>
+
+
+
+                    <!-- Reminder -->
+                    <div class="form-group">
+
+                        <label for="eventReminder">
+                            Reminder
+                        </label>
+
+                        <select id="eventReminder">
+
+                            <option value="none">
+                                No reminder
+                            </option>
+
+                            <option value="5">
+                                5 minutes before
+                            </option>
+
+                            <option value="15">
+                                15 minutes before
+                            </option>
+
+                            <option value="30">
+                                30 minutes before
+                            </option>
+
+                            <option value="60">
+                                1 hour before
+                            </option>
+
+                            <option value="1440">
+                                1 day before
+                            </option>
+
+                            <option value="10080">
+                                1 week before
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Form Actions -->
+                    <div class="modal-actions">
+
+                        <button
+                            type="button"
+                            id="cancelEventButton"
+                            class="cancel-button">
+
+                            Cancel
+
+                        </button>
+
+
+                        <button
+                            type="submit"
+                            class="save-event-button">
+
+                            Save Event
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             YEAR SELECTOR MODAL
+             ================================================= -->
+
+        <div
+            id="yearModal"
+            class="small-modal hidden">
+
+            <div class="small-modal-content">
+
+                <div class="small-modal-header">
+
+                    <h3>
+                        Select Year
+                    </h3>
+
+                    <button
+                        type="button"
+                        id="closeYearModal">
+
+                        ×
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="yearList"
+                    class="year-list">
+
+                    <!-- JavaScript generates years -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             MONTH SELECTOR MODAL
+             ================================================= -->
+
+        <div
+            id="monthModal"
+            class="small-modal hidden">
+
+            <div class="small-modal-content">
+
+                <div class="small-modal-header">
+
+                    <h3>
+                        Select Month
+                    </h3>
+
+                    <button
+                        type="button"
+                        id="closeMonthModal">
+
+                        ×
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="monthList"
+                    class="month-list">
+
+                    <!-- January - December generated -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             EVENT DETAILS MODAL
+             ================================================= -->
+
+        <div
+            id="eventDetailsModal"
+            class="event-details-modal hidden">
+
+            <div class="event-details-content">
+
+                <button
+                    type="button"
+                    id="closeEventDetails"
+                    class="close-modal-button">
+
+                    ×
+
+                </button>
+
+
+                <div id="eventDetailsBody">
+
+                    <!-- Dynamic event details -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             TOAST NOTIFICATION
+             ================================================= -->
+
+        <div
+            id="toast"
+            class="toast"
+            role="status">
+
+            <span id="toastMessage">
+                Event saved successfully.
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+         ===================================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
